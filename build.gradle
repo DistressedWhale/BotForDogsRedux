@@ -1,0 +1,30 @@
+group 'com.FacebookBot'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+apply plugin: 'idea'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+
+    // https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java
+    compile group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '3.11.0'
+
+    // https://mvnrepository.com/artifact/org.ini4j/ini4j
+    compile group: 'org.ini4j', name: 'ini4j', version: '0.5.1'
+
+    // https://mvnrepository.com/artifact/me.soliveirajr/menta-regex
+    compile group: 'me.soliveirajr', name: 'menta-regex', version: '0.9.5'
+
+
+
+    //Junit
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}
+
+
