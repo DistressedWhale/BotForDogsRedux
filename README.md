@@ -10,7 +10,11 @@ That's not going to stop our good friend dogbot, oh no.
 | ------------- | --------------------- |
 | !commands     | Links to this readme  |
 | !dog          | Sends a picture of a dog from reddit |
-| !stats        | Gives some information about the bot |
+| !stats        | Gives some information about the bot's configuration |
 | !uptime       | Gives how long the bot has been up for |
 | !xkcd l or !xkcd latest | Sends the most recent xkcd |
+| !xkcd | Sends a random XKCD |
+| !xkcd [number] | Sends a specific XKCD |
+| !tab | Wee woo |
+| !8ball or !ask | Query the all knowing magic 8 ball |
 | !github | Links to this github repository |
