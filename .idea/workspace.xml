@@ -1,14 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7ed2eb7a-d6a7-4e21-90ac-67cf166ccac0" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/DogBot.java" afterPath="$PROJECT_DIR$/src/main/java/DogBot.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ImageToClipboard.java" afterPath="$PROJECT_DIR$/src/main/java/ImageToClipboard.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/MrRobot.java" afterPath="$PROJECT_DIR$/src/main/java/RobotUtils.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/WebExplorer.java" afterPath="$PROJECT_DIR$/src/main/java/WebExplorer.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/output.html" afterPath="" />
-    </list>
+    <list default="true" id="7ed2eb7a-d6a7-4e21-90ac-67cf166ccac0" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
     <ignored path="$PROJECT_DIR$/build/" />
@@ -43,11 +36,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="DogBot.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="DogBot.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/DogBot.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="202">
-              <caret line="71" column="48" lean-forward="true" selection-start-line="71" selection-start-column="48" selection-end-line="71" selection-end-column="48" />
+            <state relative-caret-position="-418">
+              <caret line="73" column="58" lean-forward="false" selection-start-line="73" selection-start-column="58" selection-end-line="73" selection-end-column="58" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#1868#1869#0" expanded="true" />
@@ -55,16 +48,6 @@
                 <element signature="e#1978#1979#0" expanded="true" />
                 <element signature="e#2032#2033#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="config.ini" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/config/config.ini">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="6" column="10" lean-forward="false" selection-start-line="6" selection-start-column="10" selection-end-line="6" selection-end-column="10" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -493,11 +476,6 @@
             <path>
               <item name="BotForDogs" type="b2602c69:ProjectViewProjectNode" />
               <item name="BotForDogsRedux" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-            </path>
-            <path>
-              <item name="BotForDogs" type="b2602c69:ProjectViewProjectNode" />
-              <item name="BotForDogsRedux" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="config" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="BotForDogs" type="b2602c69:ProjectViewProjectNode" />
@@ -1268,10 +1246,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/config/config.ini">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="6" column="10" lean-forward="false" selection-start-line="6" selection-start-column="10" selection-end-line="6" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/DogBot.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="202">
-          <caret line="71" column="48" lean-forward="true" selection-start-line="71" selection-start-column="48" selection-end-line="71" selection-end-column="48" />
+        <state relative-caret-position="-418">
+          <caret line="73" column="58" lean-forward="false" selection-start-line="73" selection-start-column="58" selection-end-line="73" selection-end-column="58" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#1868#1869#0" expanded="true" />
@@ -1279,14 +1265,6 @@
             <element signature="e#1978#1979#0" expanded="true" />
             <element signature="e#2032#2033#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config/config.ini">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="6" column="10" lean-forward="false" selection-start-line="6" selection-start-column="10" selection-end-line="6" selection-end-column="10" />
-          <folding />
         </state>
       </provider>
     </entry>
