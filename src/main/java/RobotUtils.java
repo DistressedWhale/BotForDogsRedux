@@ -2,10 +2,10 @@ import java.awt.*;
 import java.awt.event.*;
 import java.awt.datatransfer.*;
 
-public class MrRobot {
+public class RobotUtils {
     public Robot robo;
 
-    public MrRobot() throws AWTException {
+    public RobotUtils() throws AWTException {
         try {
             robo = new Robot();
         } catch (AWTException e){
@@ -19,8 +19,6 @@ public class MrRobot {
         StringSelection stringSelection = new StringSelection( characters );
         clipboard.setContents(stringSelection, null);
 
-        robo.delay(delay);
-
         robo.keyPress(KeyEvent.VK_CONTROL);
         robo.keyPress(KeyEvent.VK_V);
         robo.keyRelease(KeyEvent.VK_V);
@@ -28,5 +26,7 @@ public class MrRobot {
 
         robo.keyPress(KeyEvent.VK_ENTER);
         robo.keyRelease(KeyEvent.VK_ENTER);
+
+        robo.delay(delay);
     }
 }

@@ -13,7 +13,7 @@ public class WebExplorer {
 
     private ChromeDriverService service;
     private WebDriver driver;
-    public MrRobot robot;
+    public RobotUtils robot;
 
     private void createAndStartService() throws IOException {
         try {
@@ -60,7 +60,7 @@ public class WebExplorer {
 
     public void logIn(String email, String password, String threadID) throws AWTException, IOException {
         System.out.println("Attempting to log in to thread " + threadID);
-        robot = new MrRobot();
+        robot = new RobotUtils();
 
         createAndStartService();
         createDriver();
@@ -75,17 +75,17 @@ public class WebExplorer {
         //Double click on the chat box.
         //Needs an extra click to ignore the "Facebook wants to send notifications"
         robot.robo.mousePress(InputEvent.BUTTON1_MASK);
-        robot.robo.delay(100);
+        robot.robo.delay(200);
         robot.robo.mouseRelease(InputEvent.BUTTON1_MASK);
 
-        robot.robo.delay(100);
+        robot.robo.delay(200);
 
         robot.robo.mousePress(InputEvent.BUTTON1_MASK);
-        robot.robo.delay(100);
+        robot.robo.delay(200);
         robot.robo.mouseRelease(InputEvent.BUTTON1_MASK);
 
         //Cursor is now in the text box
-        System.out.println("Done");
+        System.out.println("Completed login sequence");
     }
 
     public void stopExploration() {

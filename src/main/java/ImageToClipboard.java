@@ -6,7 +6,6 @@ import java.awt.datatransfer.UnsupportedFlavorException;
 import java.io.IOException;
 import javax.swing.ImageIcon;
 
-
 public class ImageToClipboard {
     public static void setImageToClipboard(String fileName) throws Exception {
 
@@ -22,25 +21,3 @@ public class ImageToClipboard {
     }
 }
 
-class ImageSelection implements Transferable {
-    private Image image;
-
-    public ImageSelection(Image image) {
-        this.image = image;
-    }
-
-    public DataFlavor[] getTransferDataFlavors() {
-        return new DataFlavor[] { DataFlavor.imageFlavor };
-    }
-
-    public boolean isDataFlavorSupported(DataFlavor flavor) {
-        return DataFlavor.imageFlavor.equals(flavor);
-    }
-
-    public Object getTransferData(DataFlavor flavor) throws UnsupportedFlavorException, IOException {
-        if (!DataFlavor.imageFlavor.equals(flavor)) {
-            throw new UnsupportedFlavorException(flavor);
-        }
-        return image;
-    }
-}
