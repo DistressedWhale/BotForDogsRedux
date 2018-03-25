@@ -19,3 +19,4 @@ That's not going to stop our good friend dogbot, oh no.
 | !8ball or !ask | Query the all knowing magic 8 ball |
 | !github | Links to this github repository |
 | !shutdown [code] | Shuts the bot down. The code is outputted to the console on bot startup. |
+| !dogreddits | Shows the subreddits used in !dog |
