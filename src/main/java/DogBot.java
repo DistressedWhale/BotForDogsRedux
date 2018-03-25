@@ -1,52 +1,41 @@
-import java.awt.*;
 import java.awt.event.KeyEvent;
-import java.io.IOException;
-
 import org.ini4j.*;
 
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 import java.io.*;
 import java.util.ArrayList;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import java.util.regex.*;
+import java.text.SimpleDateFormat;
 
 import org.json.*;
 import com.mashape.unirest.http.*;
+import java.nio.file.*;
+import java.nio.charset.*;
 
 public class DogBot {
-    private static String[] dogSubreddits = {"rarepuppers", "dogswithjobs", "dog_irl"};
-    private static String[] eightBallResponses =
-            {"It is certain",
-            "It is decidedly so",
-            "Without a doubt",
-            "Yes definitely",
-            "You may rely on it",
-            "As I see it, yes",
-            "Most likely",
-            "Outlook good",
-            "Yes",
-            "Signs point to yes",
-            "Reply hazy try again",
-            "Ask again later",
-            "Better not tell you now",
-            "Cannot predict now",
-            "Concentrate and ask again",
-            "Don't count on it",
-            "My reply is no",
-            "My sources say no",
-            "Outlook not so good",
-            "Very doubtful"};
+    private static String[] dogSubreddits, eightBallResponses, dogResponses;
 
     private static boolean running = true;
-    private static int shutdownCode;
+    private static String shutdownCode;
     private static String message = "";
     static private WebExplorer explore;
     private static String botVersion, dateBuilt, testThreadID, email, password, threadID;
     private static int updateRate;
     private static Date startTime;
 
-    private static void logInWithIni(File iniFile, boolean testing) throws IOException, AWTException{
+    private static void loadFiles() throws Exception {
+        List<String> dogResponseList = Files.readAllLines(Paths.get("config/dogResponses.txt"), StandardCharsets.UTF_8);
+        dogResponses = dogResponseList.toArray(new String[dogResponseList.size()]);
+
+        List<String> eightBallResponseList = Files.readAllLines(Paths.get("config/8BallResponses.txt"), StandardCharsets.UTF_8);
+        eightBallResponses = eightBallResponseList.toArray(new String[eightBallResponseList.size()]);
+
+        List<String> dogSubredditList = Files.readAllLines(Paths.get("config/8BallResponses.txt"), StandardCharsets.UTF_8);
+        eightBallResponses = dogSubredditList.toArray(new String[dogSubredditList.size()]);
+    }
+
+    private static void logInWithIni(File iniFile, boolean testing) throws Exception {
 
         Wini ini = new Wini(iniFile);
 
@@ -76,6 +65,15 @@ public class DogBot {
         return a.get(a.size() - 1);
     }
 
+    private static void sendDogSubreddits() {
+        String subreddits = "Subreddits used in !dog:\n";
+        for (String subreddit : dogSubreddits) {
+            subreddits = subreddits.concat("r/" + subreddit + "\n");
+        }
+
+        sendText(subreddits);
+    }
+
     private static void sendCtrlV() {
         explore.robot.robo.keyPress(KeyEvent.VK_CONTROL);
         explore.robot.robo.keyPress(KeyEvent.VK_V);
@@ -83,7 +81,13 @@ public class DogBot {
         explore.robot.robo.keyRelease(KeyEvent.VK_CONTROL);
     }
 
+    private static void doQuote() {
+        String modifiedDate= new SimpleDateFormat("dd-MM-yy").format(new Date());
+    }
+
     private static void sendImageFromURL(String imageURL) throws Exception {
+        System.out.println("Going to send image: " + imageURL);
+
         //Copy image to clipboard
         ImageToClipboard.setImageLinkToClipboard(imageURL);
 
@@ -112,6 +116,18 @@ public class DogBot {
         return array[new Random().nextInt(array.length)];
     }
 
+    private static void sendAGoodDog() throws Exception {
+        if (new Random().nextInt(100) > 25) {
+            sendText("Woof.", 250);
+        } else {
+            sendText(pickRandom(dogResponses), 250);
+        }
+
+        Thread.sleep(250);
+        sendImageFromURL(getSubredditPicture(dogSubreddits));
+
+    }
+
     private static String getSubredditPicture(String[] subreddits) throws Exception {
         boolean foundValidPicture = false;
         String formattedMatch = "";
@@ -136,9 +152,6 @@ public class DogBot {
                 foundValidPicture = true;
             }
 
-            System.out.println(formattedMatch);
-
-
 
         }
 
@@ -150,7 +163,10 @@ public class DogBot {
         Matcher eightballMatcher = Pattern.compile("(!8ball|!ask) .+").matcher(message);
 
         switch (message) {
-            case "!dog": sendImageFromURL(getSubredditPicture(dogSubreddits)); Thread.sleep(500); break;
+            case "!dog": sendAGoodDog(); break;
+
+            case "!dogreddits":
+            case "!subreddits": sendDogSubreddits(); break;
 
             case "!puptime":
             case "!uptime": sendUptime(); break;
@@ -189,18 +205,10 @@ public class DogBot {
         }
     }
 
-    private static String getPageSource(String myURL) throws Exception {
-        return Unirest.get(myURL)
-                .asString()
-                .getBody();
-    }
+    private static String getPageSource(String myURL) throws Exception {return Unirest.get(myURL).asString().getBody();}
 
     private static String getRedditJSONString(String myURL) throws Exception {
-        return Unirest.get(myURL)
-                .header("User-agent", "BotForDogsRedux")
-                .asString()
-                .getBody();
-
+        return Unirest.get(myURL).header("User-agent", "BotForDogsRedux").asString().getBody();
     }
 
     private static void sendUptime() {
@@ -275,9 +283,8 @@ public class DogBot {
     }
 
     public static void main(String[] args) throws Exception {
-        boolean lastMessageWasCommand = false;
-
-        shutdownCode = new Random().nextInt(99999);
+        loadFiles();
+        shutdownCode = (Integer.toString(new Random().nextInt(99999)));
         System.out.println("Shutdown code: " + shutdownCode);
 
         boolean testingMode = false;
@@ -288,13 +295,14 @@ public class DogBot {
         }
 
         logInWithIni(new File("config/config.ini"), testingMode);
+
         sendText("Dog Bot Redux online\nRunning version " + botVersion + " built on " + dateBuilt);
         startTime = new Date();
 
         while (running) {
             String newMessage = getLatestMessage();
 
-            if (newMessage.compareTo(message) != 0) {
+            if (newMessage.compareTo(message) != 0 && !(newMessage.equals("\" class="))) {
                 message = newMessage;
 
                 System.out.println(message);

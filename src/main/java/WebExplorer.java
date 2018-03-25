@@ -1,5 +1,5 @@
 import org.openqa.selenium.chrome.ChromeDriverService;
-import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
 import java.awt.*;
@@ -16,15 +16,19 @@ public class WebExplorer {
     public RobotUtils robot;
 
     private void createAndStartService() throws IOException {
-        try {
-            service = new ChromeDriverService.Builder()
-                    .usingDriverExecutable(new File("drivers/Windows/chromedriver.exe"))
-                    .usingAnyFreePort()
-                    .build();
-            service.start();
-        } catch (IOException e) {
-            throw e;
+        File driver;
+
+        if (System.getProperty("os.name").toLowerCase().contains("windows")) {
+            driver = new File("drivers/Windows/chromedriver.exe");
+        } else {
+            driver = new File("drivers/Linux/chromedriver");
         }
+
+        service = new ChromeDriverService.Builder()
+                .usingDriverExecutable(driver)
+                .usingAnyFreePort()
+                .build();
+        service.start();
     }
 
     private void stopService() {
@@ -33,7 +37,7 @@ public class WebExplorer {
 
     public void createDriver() {
         driver = new RemoteWebDriver(service.getUrl(),
-                DesiredCapabilities.chrome());
+                new ChromeOptions());
     }
 
     private void quitDriver() {
