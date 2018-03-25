@@ -1,16 +1,12 @@
 import java.util.ArrayList;
 import java.util.regex.*;
-import org.mentaregex.*;
 
 public class ProcessSource {
 
     public static ArrayList<String> getMessages (String source) {
-        // regex pattern:   body=".+"
-        //return Regex.match(source, "/(body=\".+\")/g" );
-
 
         ArrayList<String> allMatches = new ArrayList<String>();
-        Matcher m = Pattern.compile("body=\"((\\w)|(\\040)|([-!$%^&*()_+|~=`{}\\[\\]:;'<>?,.\\/]))+\"")
+        Matcher m = Pattern.compile("body=\".+?\"")
                 .matcher(source);
         while (m.find()) {
             allMatches.add(m.group());
@@ -20,12 +16,10 @@ public class ProcessSource {
     }
 
     private static String replaceEscaped(String s) {
-        s = s.replace("&amp;", "&")
+        return s.replace("&amp;", "&")
                 .replace("&lt;", "<")
                 .replace("&gt;", ">")
                 .replace("&quot;", "\"");
-
-        return s;
     }
 
     private static String stripBodyTag(String s) {

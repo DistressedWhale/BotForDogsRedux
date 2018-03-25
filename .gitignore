@@ -22,4 +22,4 @@
 hs_err_pid*
 
 #config
-config.ini
+config/config.ini
