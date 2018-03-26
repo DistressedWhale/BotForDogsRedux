@@ -1,3 +1,5 @@
+package DogBot;
+
 import java.awt.event.KeyEvent;
 import org.ini4j.*;
 
@@ -14,7 +16,8 @@ import java.nio.file.*;
 import java.nio.charset.*;
 
 public class DogBot {
-    private static String[] dogSubreddits, eightBallResponses, dogResponses;
+    private static String[] dogSubreddits, eightBallResponses, dogResponses, listOfSadness, quotes;
+    private static ArrayList<String> messageHistory = new ArrayList<>();
 
     private static boolean running = true;
     private static String shutdownCode;
@@ -31,8 +34,14 @@ public class DogBot {
         List<String> eightBallResponseList = Files.readAllLines(Paths.get("config/8BallResponses.txt"), StandardCharsets.UTF_8);
         eightBallResponses = eightBallResponseList.toArray(new String[eightBallResponseList.size()]);
 
-        List<String> dogSubredditList = Files.readAllLines(Paths.get("config/8BallResponses.txt"), StandardCharsets.UTF_8);
-        eightBallResponses = dogSubredditList.toArray(new String[dogSubredditList.size()]);
+        List<String> dogSubredditList = Files.readAllLines(Paths.get("config/dogSubreddits.txt"), StandardCharsets.UTF_8);
+        dogSubreddits = dogSubredditList.toArray(new String[dogSubredditList.size()]);
+
+        List<String> listOfSadnessList = Files.readAllLines(Paths.get("config/listOfSadness.txt"), StandardCharsets.UTF_8);
+        listOfSadness = listOfSadnessList.toArray(new String[listOfSadnessList.size()]);
+
+        List<String> quotesList = Files.readAllLines(Paths.get("config/quotes.txt"), StandardCharsets.UTF_8);
+        quotes = quotesList.toArray(new String[quotesList.size()]);
     }
 
     private static void logInWithIni(File iniFile, boolean testing) throws Exception {
@@ -65,6 +74,17 @@ public class DogBot {
         return a.get(a.size() - 1);
     }
 
+    private static void sendListOfSadness() {
+        String dates = "Upcoming dates:\n";
+
+        for (String thing : listOfSadness) {
+            dates = dates.concat(thing + "\n");
+        }
+
+        sendText(dates);
+
+    }
+
     private static void sendDogSubreddits() {
         String subreddits = "Subreddits used in !dog:\n";
         for (String subreddit : dogSubreddits) {
@@ -82,7 +102,7 @@ public class DogBot {
     }
 
     private static void doQuote() {
-        String modifiedDate= new SimpleDateFormat("dd-MM-yy").format(new Date());
+        sendText(pickRandom(quotes));
     }
 
     private static void sendImageFromURL(String imageURL) throws Exception {
@@ -158,9 +178,36 @@ public class DogBot {
         return formattedMatch;
     }
 
+    private static void doGrab() throws Exception {
+        String grabbedMessage = messageHistory.get(messageHistory.size() - 1);
+
+        sendText("Grabbed \"" + grabbedMessage + "\"");
+
+        Files.write(Paths.get("config/quotes.txt"), ("\"" + grabbedMessage + "\"" + System.getProperty("line.separator")).getBytes(), StandardOpenOption.APPEND);
+
+        //Reload files
+        loadFiles();
+    }
+
+    private static void doGrab(int offset) throws Exception {
+        if (offset < messageHistory.size() - 1) {
+            String grabbedMessage = messageHistory.get(messageHistory.size() - 1 - offset);
+            sendText("Grabbed \"" + grabbedMessage + "\"");
+
+            Files.write(Paths.get("config/quotes.txt"), ("\"" + grabbedMessage + "\"" + System.getProperty("line.separator")).getBytes(), StandardOpenOption.APPEND);
+
+            //Reload files
+            loadFiles();
+        } else {
+            sendText("Grab offset is out of range");
+        }
+    }
+
+
     private static void runCommandTriggers(String message) throws Exception {
         Matcher xkcdmatcher = Pattern.compile("!xkcd [1-9][0-9]{0,3}").matcher(message);
         Matcher eightballMatcher = Pattern.compile("(!8ball|!ask) .+").matcher(message);
+        Matcher grabOffsetMatcher = Pattern.compile("!grab ([0-9])|(10)").matcher(message);
 
         switch (message) {
             case "!dog": sendAGoodDog(); break;
@@ -181,6 +228,10 @@ public class DogBot {
             case "!xkcd l":
             case "!xkcd latest": getLatestXKCD(); break;
 
+            case "!grab": doGrab(); break;
+            case "!quote": doQuote(); break;
+            case "!dates": sendListOfSadness(); break;
+
             case "!github": sendText("Github repository: https://github.com/DistressedWhale/BotForDogsRedux"); break;
             case "!commands": sendText("A list of commands can be found at https://github.com/DistressedWhale/BotForDogsRedux/blob/master/README.md"); break;
             default:
@@ -196,6 +247,8 @@ public class DogBot {
                 } else if (message.equals("!shutdown " + shutdownCode)) {
                     running = false;
                     sendText("Shutting down");
+                } else if (grabOffsetMatcher.matches()) {
+                    doGrab(Integer.valueOf(message.substring(6)));
                 }
 
                 //Make sure this is the last check.
@@ -308,6 +361,7 @@ public class DogBot {
                 System.out.println(message);
 
                 runCommandTriggers(message.toLowerCase().trim());
+                messageHistory.add(message);
             }
 
             Thread.sleep(updateRate);

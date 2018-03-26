@@ -1,3 +1,5 @@
+package DogBot;
+
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.datatransfer.*;

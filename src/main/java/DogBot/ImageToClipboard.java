@@ -1,3 +1,5 @@
+package DogBot;
+
 import java.awt.Toolkit;
 import java.awt.datatransfer.DataFlavor;
 import java.awt.Image;
