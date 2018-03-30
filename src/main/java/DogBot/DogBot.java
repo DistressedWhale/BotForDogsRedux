@@ -16,7 +16,7 @@ import java.nio.file.*;
 import java.nio.charset.*;
 
 public class DogBot {
-    private static String[] dogSubreddits, eightBallResponses, dogResponses, listOfSadness, quotes;
+    private static String[] dogSubreddits, eightBallResponses, dogResponses, listOfSadness, quotes, dogOnlineMessages, dogShutdownMessages;
     private static ArrayList<String> messageHistory = new ArrayList<>();
 
     private static boolean running = true;
@@ -25,6 +25,7 @@ public class DogBot {
     static private WebExplorer explore;
     private static String botVersion, dateBuilt, testThreadID, email, password, threadID;
     private static int updateRate;
+    private static int messageCount = 0;
     private static Date startTime;
 
     private static void loadFiles() throws Exception {
@@ -42,6 +43,12 @@ public class DogBot {
 
         List<String> quotesList = Files.readAllLines(Paths.get("config/quotes.txt"), StandardCharsets.UTF_8);
         quotes = quotesList.toArray(new String[quotesList.size()]);
+
+        List<String> dogOnlineMessagesList = Files.readAllLines(Paths.get("config/dogOnlineMessages.txt"), StandardCharsets.UTF_8);
+        dogOnlineMessages = dogOnlineMessagesList.toArray(new String[dogOnlineMessagesList.size()]);
+
+        List<String> dogShutdownMessagesList = Files.readAllLines(Paths.get("config/dogShutdownMessages.txt"), StandardCharsets.UTF_8);
+        dogShutdownMessages = dogShutdownMessagesList.toArray(new String[dogShutdownMessagesList.size()]);
     }
 
     private static void logInWithIni(File iniFile, boolean testing) throws Exception {
@@ -54,8 +61,6 @@ public class DogBot {
         testThreadID = ini.get("configuration", "testThreadID");
 
         botVersion = ini.get("information", "version");
-        dateBuilt = ini.get("information",  "date");
-
         updateRate = ini.get("botInfo", "updateRate", int.class);
 
         explore = new WebExplorer();
@@ -83,6 +88,11 @@ public class DogBot {
 
         sendText(dates);
 
+    }
+
+    private static boolean matches(String regex, String string) {
+        Matcher matcher = Pattern.compile(regex).matcher(string);
+        return matcher.matches();
     }
 
     private static void sendDogSubreddits() {
@@ -178,6 +188,11 @@ public class DogBot {
         return formattedMatch;
     }
 
+    private static void doRTD(String message) {
+        int number = Integer.valueOf(message.substring(5));
+        sendText("You rolled " + String.valueOf(new Random().nextInt(number) + 1));
+    }
+
     private static void doGrab() throws Exception {
         String grabbedMessage = messageHistory.get(messageHistory.size() - 1);
 
@@ -205,9 +220,6 @@ public class DogBot {
 
 
     private static void runCommandTriggers(String message) throws Exception {
-        Matcher xkcdmatcher = Pattern.compile("!xkcd [1-9][0-9]{0,3}").matcher(message);
-        Matcher eightballMatcher = Pattern.compile("(!8ball|!ask) .+").matcher(message);
-        Matcher grabOffsetMatcher = Pattern.compile("!grab ([0-9])|(10)").matcher(message);
 
         switch (message) {
             case "!dog": sendAGoodDog(); break;
@@ -221,6 +233,8 @@ public class DogBot {
             case "!stats": sendStats(); break;
             case "!tab": sendText("WEE WOO WEE WOO", 250); sendImage("resources/misc/tabulance.png");  break;
             case "!xkcd": getRandomXKCD(); break;
+
+            case "!rtd": sendText("You rolled " + String.valueOf(new Random().nextInt(6) + 1)); break;
 
             case "!8ball":
             case "!ask": sendText("Please enter a question after the command"); break;
@@ -239,15 +253,17 @@ public class DogBot {
                     sendText("Thanks :D");
                 } else if (message.contains("bad bot")) {
                     sendText("I'm sorry, I'll try and do better next time :( ");
-                } else if (eightballMatcher.matches()) {
+                } else if (matches("(!8ball|!ask) .+", message)) {
                     sendText(pickRandom(eightBallResponses));
-                } else if (xkcdmatcher.matches()) {
+                } else if (matches("!xkcd [1-9][0-9]{0,3}", message)) {
                     int xkcdNumber = Integer.valueOf(message.substring(6));
                     getSpecificXKCD(xkcdNumber);
                 } else if (message.equals("!shutdown " + shutdownCode)) {
                     running = false;
-                    sendText("Shutting down");
-                } else if (grabOffsetMatcher.matches()) {
+                    sendText("Shutting down\n" + pickRandom(dogShutdownMessages));
+                } else if (matches("!rtd [1-9][0-9]{0,10}", message)) {
+                    doRTD(message);
+                } else if (matches("!grab ([0-9])|(10)", message)) {
                     doGrab(Integer.valueOf(message.substring(6)));
                 }
 
@@ -279,8 +295,11 @@ public class DogBot {
 
     private static void sendStats() {
         sendText(   "Version: " + botVersion + "\n" +
-                    "Built on: " + dateBuilt + "\n" +
-                    "Update rate: " + updateRate + "ms");
+                    "Update rate: " + updateRate + "ms\n" +
+                    "Java version: " + System.getProperty("java.version") + "\n" +
+                    "Operating system: " + System.getProperty("os.name") + "\n\n" +
+
+                    "Unique messages read this session: " + messageCount);
     }
 
     private static void getLatestXKCD() throws Exception {
@@ -349,7 +368,7 @@ public class DogBot {
 
         logInWithIni(new File("config/config.ini"), testingMode);
 
-        sendText("Dog Bot Redux online\nRunning version " + botVersion + " built on " + dateBuilt);
+        sendText("Dog Bot Redux version " + botVersion +  " online\n" + pickRandom(dogOnlineMessages));
         startTime = new Date();
 
         while (running) {
@@ -359,6 +378,7 @@ public class DogBot {
                 message = newMessage;
 
                 System.out.println(message);
+                messageCount ++;
 
                 runCommandTriggers(message.toLowerCase().trim());
                 messageHistory.add(message);
