@@ -23,3 +23,5 @@ That's not going to stop our good friend dogbot, oh no.
 | !grab | Saves the most recent message |
 | !grab [offset] | Grabs a message [offset] messages ago. !grab 0 is the same as !grab in practise.|
 | !quote | Returns a random saved message |
+| !rtd | Rolls 1-6 |
+| !rtd [x] | Rolls 1-x |
