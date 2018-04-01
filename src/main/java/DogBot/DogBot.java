@@ -8,15 +8,13 @@ import java.util.concurrent.TimeUnit;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.regex.*;
-import java.text.SimpleDateFormat;
-
 import org.json.*;
 import com.mashape.unirest.http.*;
 import java.nio.file.*;
 import java.nio.charset.*;
 
 public class DogBot {
-    private static String[] dogSubreddits, eightBallResponses, dogResponses, listOfSadness, quotes, dogOnlineMessages, dogShutdownMessages;
+    private static String[] dogSubreddits, eightBallResponses, dogResponses, listOfSadness, quotes, dogOnlineMessages, dogShutdownMessages, extraGoodDogs;
     private static ArrayList<String> messageHistory = new ArrayList<>();
 
     private static boolean running = true;
@@ -49,6 +47,9 @@ public class DogBot {
 
         List<String> dogShutdownMessagesList = Files.readAllLines(Paths.get("config/dogShutdownMessages.txt"), StandardCharsets.UTF_8);
         dogShutdownMessages = dogShutdownMessagesList.toArray(new String[dogShutdownMessagesList.size()]);
+
+        List<String> extraGoodDogsList = Files.readAllLines(Paths.get("config/extraGoodDogs.txt"), StandardCharsets.UTF_8);
+        extraGoodDogs = extraGoodDogsList.toArray(new String[extraGoodDogsList.size()]);
     }
 
     private static void logInWithIni(File iniFile, boolean testing) throws Exception {
@@ -189,30 +190,42 @@ public class DogBot {
     }
 
     private static void doRTD(String message) {
-        int number = Integer.valueOf(message.substring(5));
-        sendText("You rolled " + String.valueOf(new Random().nextInt(number) + 1));
-    }
+        try {
+            int number = Integer.valueOf(message.substring(5));
+            sendText("You rolled " + String.valueOf(new Random().nextInt(number) + 1));
+        } catch (NumberFormatException e) {
+            sendText("RTD value out of range.");
+        }
+        }
 
     private static void doGrab() throws Exception {
         String grabbedMessage = messageHistory.get(messageHistory.size() - 1);
-
-        sendText("Grabbed \"" + grabbedMessage + "\"");
-
-        Files.write(Paths.get("config/quotes.txt"), ("\"" + grabbedMessage + "\"" + System.getProperty("line.separator")).getBytes(), StandardOpenOption.APPEND);
-
-        //Reload files
-        loadFiles();
-    }
-
-    private static void doGrab(int offset) throws Exception {
-        if (offset < messageHistory.size() - 1) {
-            String grabbedMessage = messageHistory.get(messageHistory.size() - 1 - offset);
+        if (!(matches("Grabbed \".+?\"", grabbedMessage))) {
             sendText("Grabbed \"" + grabbedMessage + "\"");
 
             Files.write(Paths.get("config/quotes.txt"), ("\"" + grabbedMessage + "\"" + System.getProperty("line.separator")).getBytes(), StandardOpenOption.APPEND);
 
             //Reload files
             loadFiles();
+        } else {
+            sendText("Don't do that >:(");
+        }
+    }
+
+    private static void doGrab(int offset) throws Exception {
+        if (offset < messageHistory.size() - 1) {
+            String grabbedMessage = messageHistory.get(messageHistory.size() - 1 - offset);
+
+            if (!(matches("Grabbed \".+?\"", grabbedMessage))) {
+                sendText("Grabbed \"" + grabbedMessage + "\"");
+
+                Files.write(Paths.get("config/quotes.txt"), ("\"" + grabbedMessage + "\"" + System.getProperty("line.separator")).getBytes(), StandardOpenOption.APPEND);
+
+                //Reload files
+                loadFiles();
+            } else {
+                sendText("Don't do that >:(");
+            }
         } else {
             sendText("Grab offset is out of range");
         }
@@ -239,14 +252,21 @@ public class DogBot {
             case "!8ball":
             case "!ask": sendText("Please enter a question after the command"); break;
 
+            case "!ping": sendText("Pong!"); break;
+
             case "!xkcd l":
             case "!xkcd latest": getLatestXKCD(); break;
 
             case "!grab": doGrab(); break;
             case "!quote": doQuote(); break;
             case "!dates": sendListOfSadness(); break;
+            case "!extragooddog": sendText("Woof.",250); sendImageFromURL(pickRandom(extraGoodDogs)); break;
+
+            case "!reload": loadFiles(); break;
 
             case "!github": sendText("Github repository: https://github.com/DistressedWhale/BotForDogsRedux"); break;
+
+            case "!help":
             case "!commands": sendText("A list of commands can be found at https://github.com/DistressedWhale/BotForDogsRedux/blob/master/README.md"); break;
             default:
                 if (message.contains("good bot")) {
