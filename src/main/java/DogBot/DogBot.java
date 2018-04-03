@@ -108,6 +108,9 @@ public class DogBot {
     private static void sendCtrlV() {
         explore.robot.robo.keyPress(KeyEvent.VK_CONTROL);
         explore.robot.robo.keyPress(KeyEvent.VK_V);
+
+        explore.robot.robo.delay(100);
+
         explore.robot.robo.keyRelease(KeyEvent.VK_V);
         explore.robot.robo.keyRelease(KeyEvent.VK_CONTROL);
     }
@@ -149,7 +152,7 @@ public class DogBot {
 
     private static void sendAGoodDog() throws Exception {
         if (new Random().nextInt(100) > 25) {
-            sendText("Woof.", 250);
+            sendText("Woof.", 300);
         } else {
             sendText(pickRandom(dogResponses), 250);
         }
@@ -260,7 +263,7 @@ public class DogBot {
             case "!grab": doGrab(); break;
             case "!quote": doQuote(); break;
             case "!dates": sendListOfSadness(); break;
-            case "!extragooddog": sendText("Woof.",250); sendImageFromURL(pickRandom(extraGoodDogs)); break;
+            case "!extragooddog": sendText("Woof.",300); sendImageFromURL(pickRandom(extraGoodDogs)); break;
 
             case "!reload": loadFiles(); break;
 
@@ -333,7 +336,7 @@ public class DogBot {
 
         sendText("Title: " + title + "\n" +
                 "Number: " + number + "\n" +
-                "Alt text: " + alt, 250);
+                "Alt text: " + alt, 300);
         sendImageFromURL(imgURL);
     }
 
@@ -350,7 +353,7 @@ public class DogBot {
 
         sendText("Title: " + title + "\n" +
                 "Number: " + randomXKCDNumber + "\n" +
-                "Alt text: " + alt, 250);
+                "Alt text: " + alt, 300);
         sendImageFromURL(imgURL);
     }
 
@@ -369,7 +372,7 @@ public class DogBot {
 
             sendText("Title: " + title + "\n" +
                     "Number: " + number + "\n" +
-                    "Alt text: " + alt, 250);
+                    "Alt text: " + alt, 300);
             sendImageFromURL(imgURL);
         }
     }
