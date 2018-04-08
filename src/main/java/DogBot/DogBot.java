@@ -21,8 +21,8 @@ public class DogBot {
     private static String shutdownCode;
     private static String message = "";
     static private WebExplorer explore;
-    private static String botVersion, dateBuilt, testThreadID, email, password, threadID;
-    private static int updateRate;
+    private static String botVersion, testThreadID, email, password, threadID;
+    private static int updateRate, goodcount, badcount;
     private static int messageCount = 0;
     private static Date startTime;
 
@@ -50,6 +50,11 @@ public class DogBot {
 
         List<String> extraGoodDogsList = Files.readAllLines(Paths.get("config/extraGoodDogs.txt"), StandardCharsets.UTF_8);
         extraGoodDogs = extraGoodDogsList.toArray(new String[extraGoodDogsList.size()]);
+
+        Wini ini = new Wini(new File("config/config.ini"));
+        goodcount = ini.get("ratings", "goodratings", int.class);
+        badcount = ini.get("ratings", "badratings", int.class);
+
     }
 
     private static void logInWithIni(File iniFile, boolean testing) throws Exception {
@@ -192,6 +197,18 @@ public class DogBot {
         return formattedMatch;
     }
 
+    private static void getGood() {
+        sendText(String.format("I am %s%% good, based off %s ratings (%s good, %s bad)", (int) Math.round(100.0 * ((float) goodcount / (float) (goodcount+badcount))), (goodcount + badcount), goodcount, badcount));
+    }
+
+    private static void updateRatings() throws IOException {
+        Wini ini = new Wini(new File("config/config.ini"));
+        ini.remove("goodratings");
+        ini.remove("badratings");
+        ini.put("ratings", "goodratings", goodcount);
+        ini.put("ratings", "badratings", badcount);
+    }
+
     private static void doRTD(String message) {
         try {
             int number = Integer.valueOf(message.substring(5));
@@ -203,10 +220,10 @@ public class DogBot {
 
     private static void doGrab() throws Exception {
         String grabbedMessage = messageHistory.get(messageHistory.size() - 1);
-        if (!(matches("Grabbed \".+?\"", grabbedMessage))) {
+        if (!(matches("Grabbed \".+?\"", grabbedMessage) || matches("Quote: \".+?\"", grabbedMessage))) {
             sendText("Grabbed \"" + grabbedMessage + "\"");
 
-            Files.write(Paths.get("config/quotes.txt"), ("\"" + grabbedMessage + "\"" + System.getProperty("line.separator")).getBytes(), StandardOpenOption.APPEND);
+            Files.write(Paths.get("config/quotes.txt"), ("Quote: \"" + grabbedMessage + "\"" + System.getProperty("line.separator")).getBytes(), StandardOpenOption.APPEND);
 
             //Reload files
             loadFiles();
@@ -219,10 +236,10 @@ public class DogBot {
         if (offset < messageHistory.size() - 1) {
             String grabbedMessage = messageHistory.get(messageHistory.size() - 1 - offset);
 
-            if (!(matches("Grabbed \".+?\"", grabbedMessage))) {
+            if (!(matches("Grabbed \".+?\"", grabbedMessage) || matches("Quote: \".+?\"", grabbedMessage))) {
                 sendText("Grabbed \"" + grabbedMessage + "\"");
 
-                Files.write(Paths.get("config/quotes.txt"), ("\"" + grabbedMessage + "\"" + System.getProperty("line.separator")).getBytes(), StandardOpenOption.APPEND);
+                Files.write(Paths.get("config/quotes.txt"), ("Quote: \"" + grabbedMessage + "\"" + System.getProperty("line.separator")).getBytes(), StandardOpenOption.APPEND);
 
                 //Reload files
                 loadFiles();
@@ -268,14 +285,18 @@ public class DogBot {
             case "!reload": loadFiles(); break;
 
             case "!github": sendText("Github repository: https://github.com/DistressedWhale/BotForDogsRedux"); break;
-
+            case "!howgood": getGood(); break;
             case "!help":
             case "!commands": sendText("A list of commands can be found at https://github.com/DistressedWhale/BotForDogsRedux/blob/master/README.md"); break;
             default:
-                if (message.contains("good bot")) {
+                if (message.contains("good bot") || message.contains("good boy") || message.contains("good dog")) {
                     sendText("Thanks :D");
-                } else if (message.contains("bad bot")) {
+                    goodcount++;
+                    updateRatings();
+                } else if (message.contains("bad bot") || message.contains("bad dog")) {
                     sendText("I'm sorry, I'll try and do better next time :( ");
+                    badcount++;
+                    updateRatings();
                 } else if (matches("(!8ball|!ask) .+", message)) {
                     sendText(pickRandom(eightBallResponses));
                 } else if (matches("!xkcd [1-9][0-9]{0,3}", message)) {

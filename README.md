@@ -25,3 +25,4 @@ That's not going to stop our good friend dogbot, oh no.
 | !dogreddits | Shows the subreddits used in !dog |
 | !extragooddog | Sends an image from a curated list of dogs |
 | !ping | Pong! |
+| !howgood | Just how good is dogbot? |
