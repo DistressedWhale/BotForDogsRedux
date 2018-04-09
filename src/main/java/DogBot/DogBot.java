@@ -264,7 +264,7 @@ public class DogBot {
             case "!uptime": sendUptime(); break;
 
             case "!stats": sendStats(); break;
-            case "!tab": sendText("WEE WOO WEE WOO", 250); sendImage("resources/misc/tabulance.png");  break;
+            case "!tab": sendText("WEE WOO WEE WOO", 500); sendImage("resources/misc/tabulance.png");  break;
             case "!xkcd": getRandomXKCD(); break;
 
             case "!rtd": sendText("You rolled " + String.valueOf(new Random().nextInt(6) + 1)); break;
@@ -280,7 +280,7 @@ public class DogBot {
             case "!grab": doGrab(); break;
             case "!quote": doQuote(); break;
             case "!dates": sendListOfSadness(); break;
-            case "!extragooddog": sendText("Woof.",300); sendImageFromURL(pickRandom(extraGoodDogs)); break;
+            case "!extragooddog": sendText("Woof.",500); sendImageFromURL(pickRandom(extraGoodDogs)); break;
 
             case "!reload": loadFiles(); break;
 
@@ -357,7 +357,7 @@ public class DogBot {
 
         sendText("Title: " + title + "\n" +
                 "Number: " + number + "\n" +
-                "Alt text: " + alt, 300);
+                "Alt text: " + alt, 500);
         sendImageFromURL(imgURL);
     }
 
@@ -374,7 +374,7 @@ public class DogBot {
 
         sendText("Title: " + title + "\n" +
                 "Number: " + randomXKCDNumber + "\n" +
-                "Alt text: " + alt, 300);
+                "Alt text: " + alt, 500);
         sendImageFromURL(imgURL);
     }
 
@@ -393,7 +393,7 @@ public class DogBot {
 
             sendText("Title: " + title + "\n" +
                     "Number: " + number + "\n" +
-                    "Alt text: " + alt, 300);
+                    "Alt text: " + alt, 500);
             sendImageFromURL(imgURL);
         }
     }
