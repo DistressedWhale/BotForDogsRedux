@@ -1,8 +1,7 @@
 # BotForDogsRedux
 
 The Facebook messenger API doesn't allow you to have bots in group chats.
-
-That's not going to stop our good friend dogbot, oh no.
+This updated version of BotForDogs solves that, by using a combination of a web driver, automated mouse clicks and clipboard manipulation to read messages from the page source of a facebook messenger thread, and respond.
 
 ## Commands
 
@@ -25,4 +24,4 @@ That's not going to stop our good friend dogbot, oh no.
 | !dogreddits | Shows the subreddits used in !dog |
 | !extragooddog | Sends an image from a curated list of dogs |
 | !ping | Pong! |
-| !howgood | Just how good is dogbot? |
+| !howgood | Just how good is dogbot? Based off "good dog" and "bad dog" ratings |
