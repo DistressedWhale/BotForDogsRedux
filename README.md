@@ -1,6 +1,6 @@
 # BotForDogsRedux
 
-The Facebook messenger API doesn't allow you to have bots in group chats.
+The Facebook messenger API doesn't allow you to have bots in group chats.  
 This updated version of BotForDogs solves that, by using a combination of a web driver, automated mouse clicks and clipboard manipulation to read messages from the page source of a facebook messenger thread, and respond.
 
 ## Commands
