@@ -9,6 +9,7 @@ This updated version of BotForDogs solves that, by using a combination of a web 
 | ------------- | --------------------- |
 | !commands or !help     | Links to this readme  |
 | !dog          | Sends a picture of a dog from reddit |
+| !cat | Sends a picture of a cat from reddit |
 | !stats        | Gives some information about the bot's configuration |
 | !uptime       | Gives how long the bot has been up for |
 | !xkcd l or !xkcd latest | Sends the most recent xkcd |
