@@ -14,7 +14,7 @@ import java.nio.file.*;
 import java.nio.charset.*;
 
 public class DogBot {
-    private static String[] dogSubreddits, eightBallResponses, dogResponses, listOfSadness, quotes, dogOnlineMessages, dogShutdownMessages, extraGoodDogs;
+    private static String[] dogSubreddits, eightBallResponses, dogResponses, listOfSadness, quotes, dogOnlineMessages, dogShutdownMessages, extraGoodDogs, catSubreddits, catResponses;
     private static ArrayList<String> messageHistory = new ArrayList<>();
 
     private static boolean running = true;
@@ -30,11 +30,17 @@ public class DogBot {
         List<String> dogResponseList = Files.readAllLines(Paths.get("config/dogResponses.txt"), StandardCharsets.UTF_8);
         dogResponses = dogResponseList.toArray(new String[dogResponseList.size()]);
 
+        List<String> catResponseList = Files.readAllLines(Paths.get("config/catResponses.txt"), StandardCharsets.UTF_8);
+        catResponses = catResponseList.toArray(new String[catResponseList.size()]);
+
         List<String> eightBallResponseList = Files.readAllLines(Paths.get("config/8BallResponses.txt"), StandardCharsets.UTF_8);
         eightBallResponses = eightBallResponseList.toArray(new String[eightBallResponseList.size()]);
 
         List<String> dogSubredditList = Files.readAllLines(Paths.get("config/dogSubreddits.txt"), StandardCharsets.UTF_8);
         dogSubreddits = dogSubredditList.toArray(new String[dogSubredditList.size()]);
+
+        List<String> catSubredditList = Files.readAllLines(Paths.get("config/catSubreddits.txt"), StandardCharsets.UTF_8);
+        catSubreddits = catSubredditList.toArray(new String[catSubredditList.size()]);
 
         List<String> listOfSadnessList = Files.readAllLines(Paths.get("config/listOfSadness.txt"), StandardCharsets.UTF_8);
         listOfSadness = listOfSadnessList.toArray(new String[listOfSadnessList.size()]);
@@ -167,6 +173,18 @@ public class DogBot {
 
     }
 
+    private static void sendABetterCat() throws Exception {
+        if (new Random().nextInt(100) > 25) {
+            sendText("Meow.", 300);
+        } else {
+            sendText(pickRandom(catResponses), 250);
+        }
+
+        Thread.sleep(250);
+        sendImageFromURL(getSubredditPicture(catSubreddits));
+
+    }
+
     private static String getSubredditPicture(String[] subreddits) throws Exception {
         boolean foundValidPicture = false;
         String formattedMatch = "";
@@ -256,6 +274,7 @@ public class DogBot {
 
         switch (message) {
             case "!dog": sendAGoodDog(); break;
+            case "!cat": sendABetterCat(); break;
 
             case "!dogreddits":
             case "!subreddits": sendDogSubreddits(); break;
