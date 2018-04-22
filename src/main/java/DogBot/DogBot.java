@@ -318,6 +318,8 @@ public class DogBot {
                     sendText("I'm sorry, I'll try and do better next time :( ");
                     badcount++;
                     updateRatings();
+                } else if (matches("((you|You)(r|'re)|(yer|Yer)) (m|M)(u|o)m( (b|B)ig)? (g|G)(e|a)y")) {
+                  sendText("No u")
                 } else if (matches("(!8ball|!ask) .+", message)) {
                     sendText(pickRandom(eightBallResponses));
                 } else if (matches("(!react|!catreact) .+", message)) {
