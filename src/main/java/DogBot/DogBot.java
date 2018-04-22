@@ -127,7 +127,7 @@ public class DogBot {
     }
 
     private static void doQuote() {
-        sendText(pickRandom(quotes));
+        sendText("Quote: \"" + pickRandom(quotes) + "\"");
     }
 
     private static void sendImageFromURL(String imageURL) throws Exception {
@@ -241,7 +241,7 @@ public class DogBot {
         if (!(matches("Grabbed \".+?\"", grabbedMessage) || matches("Quote: \".+?\"", grabbedMessage))) {
             sendText("Grabbed \"" + grabbedMessage + "\"");
 
-            Files.write(Paths.get("config/quotes.txt"), ("Quote: \"" + grabbedMessage + "\"" + System.getProperty("line.separator")).getBytes(), StandardOpenOption.APPEND);
+            Files.write(Paths.get("config/quotes.txt"), (grabbedMessage + System.getProperty("line.separator")).getBytes(), StandardOpenOption.APPEND);
 
             //Reload files
             loadFiles();
@@ -257,7 +257,7 @@ public class DogBot {
             if (!(matches("Grabbed \".+?\"", grabbedMessage) || matches("Quote: \".+?\"", grabbedMessage))) {
                 sendText("Grabbed \"" + grabbedMessage + "\"");
 
-                Files.write(Paths.get("config/quotes.txt"), ("Quote: \"" + grabbedMessage + "\"" + System.getProperty("line.separator")).getBytes(), StandardOpenOption.APPEND);
+                Files.write(Paths.get("config/quotes.txt"), ( grabbedMessage + System.getProperty("line.separator")).getBytes(), StandardOpenOption.APPEND);
 
                 //Reload files
                 loadFiles();
