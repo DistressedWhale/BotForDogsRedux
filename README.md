@@ -20,6 +20,7 @@ This updated version of BotForDogs solves that, by using a combination of a web 
 | !quote | Returns a random grabbed message |
 | !tab | Wee woo |
 | !8ball or !ask | Query the all knowing magic 8 ball |
+| !react | Gives the cat's reaction |
 | !github | Links to this github repository |
 | !shutdown [code] | Shuts the bot down. The code is outputted to the console on bot startup. |
 | !dogreddits | Shows the subreddits used in !dog |
