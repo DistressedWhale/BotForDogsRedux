@@ -330,7 +330,7 @@ public class DogBot {
                     sendText("Shutting down\n" + pickRandom(dogShutdownMessages));
                 } else if (matches("!rtd [1-9][0-9]{0,10}", message)) {
                     doRTD(message);
-                } else if (matches("!grab ([0-9])|(10)", message)) {
+                } else if (matches("!grab \\d+", message)) {
                     doGrab(Integer.valueOf(message.substring(6)));
                 }
 
