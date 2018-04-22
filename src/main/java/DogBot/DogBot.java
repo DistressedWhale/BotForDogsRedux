@@ -14,7 +14,7 @@ import java.nio.file.*;
 import java.nio.charset.*;
 
 public class DogBot {
-    private static String[] dogSubreddits, eightBallResponses, dogResponses, listOfSadness, quotes, dogOnlineMessages, dogShutdownMessages, extraGoodDogs, catSubreddits, catResponses;
+    private static String[] dogSubreddits, eightBallResponses, dogResponses, listOfSadness, quotes, dogOnlineMessages, dogShutdownMessages, extraGoodDogs, catSubreddits, catResponses, catReacts;
     private static ArrayList<String> messageHistory = new ArrayList<>();
 
     private static boolean running = true;
@@ -56,6 +56,8 @@ public class DogBot {
 
         List<String> extraGoodDogsList = Files.readAllLines(Paths.get("config/extraGoodDogs.txt"), StandardCharsets.UTF_8);
         extraGoodDogs = extraGoodDogsList.toArray(new String[extraGoodDogsList.size()]);
+        List<String> catReactsList = Files.readAllLines(Paths.get("config/catReacts.txt"), StandardCharsets.UTF_8);
+        catReacts = catReactsList.toArray(new String[catReactsList.size()]);
 
         Wini ini = new Wini(new File("config/config.ini"));
         goodcount = ini.get("ratings", "goodratings", int.class);
@@ -318,6 +320,8 @@ public class DogBot {
                     updateRatings();
                 } else if (matches("(!8ball|!ask) .+", message)) {
                     sendText(pickRandom(eightBallResponses));
+                } else if (matches("(!react|!catreact) .+", message)) {
+                    sendText("Judging.",500); sendImageFromURL(pickRandom(catReacts));
                 } else if (matches("!xkcd [1-9][0-9]{0,3}", message)) {
                     int xkcdNumber = Integer.valueOf(message.substring(6));
                     getSpecificXKCD(xkcdNumber);
