@@ -320,9 +320,9 @@ public class DogBot {
                     updateRatings();
                 } else if (matches("(!8ball|!ask) .+", message)) {
                     sendText(pickRandom(eightBallResponses));
-                } else if (matches("(!react|!catreact) .+", message)) {
+                } else if (matches("(!react|!catreact|!reaction|!reacc|catreacc) .+", message)) {
                     sendText("Judging.",500); sendImageFromURL(pickRandom(catReacts));
-                } else if (matches("!xkcd [1-9][0-9]{0,3}", message)) {
+                } else if (matches("!xkcd \\d+", message)) {
                     int xkcdNumber = Integer.valueOf(message.substring(6));
                     getSpecificXKCD(xkcdNumber);
                 } else if (message.equals("!shutdown " + shutdownCode)) {
