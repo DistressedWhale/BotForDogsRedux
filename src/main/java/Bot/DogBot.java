@@ -329,17 +329,9 @@ public class DogBot {
             }
 
             //Scroll down to make sure the bot keeps responding
-            if (scrollCycles >= 100) {
-                explore.robot.mouseMove(400, 800);
-                explore.robot.mouseWheel(100);
-
+            if (scrollCycles >= 50) {
+                explore.robot.keyPress(KeyEvent.VK_PAGE_DOWN);
                 scrollCycles = 0;
-
-                explore.robot.mouseMove(400, 1000);
-
-                explore.robot.mousePress(InputEvent.BUTTON1_MASK);
-                explore.robot.delay(200);
-                explore.robot.mouseRelease(InputEvent.BUTTON1_MASK);
             }
 
             scrollCycles++;
