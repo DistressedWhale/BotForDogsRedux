@@ -1,5 +1,6 @@
 package Bot;
 
+import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
 
 import Bot.Utilities.*;
@@ -296,6 +297,8 @@ public class DogBot {
     }
 
     public static void main(String[] args) throws Exception {
+        int scrollCycles = 0;
+
         loadFiles();
         shutdownCode = (Integer.toString(new Random().nextInt(99999)));
         System.out.println("Shutdown code: " + shutdownCode);
@@ -326,7 +329,20 @@ public class DogBot {
             }
 
             //Scroll down to make sure the bot keeps responding
-            explore.robot.mouseWheel(100);
+            if (scrollCycles >= 100) {
+                explore.robot.mouseMove(400, 800);
+                explore.robot.mouseWheel(100);
+
+                scrollCycles = 0;
+
+                explore.robot.mouseMove(400, 1000);
+
+                explore.robot.mousePress(InputEvent.BUTTON1_MASK);
+                explore.robot.delay(200);
+                explore.robot.mouseRelease(InputEvent.BUTTON1_MASK);
+            }
+
+            scrollCycles++;
             Thread.sleep(updateRate);
 
 
