@@ -1,6 +1,5 @@
 package Bot.Modules;
 
-import org.json.JSONObject;
 import Bot.DogBot;
 
 public class Inspirobot {
