@@ -7,7 +7,4 @@ public class Inspirobot {
         String imgURL = DogBot.getPageSource("http://inspirobot.me/api?generate=true");
         DogBot.sendImageFromURL(imgURL);
     }
-    public static void main(String[] args) {
-      getInspired();
-    }
 }
