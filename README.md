@@ -28,3 +28,4 @@ This updated version of BotForDogs solves that, by using a combination of a web 
 | !ping | Pong! |
 | !howgood | Just how good is dogbot? Based off "good dog" and "bad dog" ratings |
 | !dates | Outputs a list of upcoming dates from listOfSadness.txt |
+| !inspire | Returns an inspirational quote from http://inspirobot.me |

@@ -199,6 +199,11 @@ public class DogBot {
             case "!grab": Quotes.doGrab(); break;
             case "!quote": Quotes.doQuote(); break;
             case "!dates": sendListOfSadness(); break;
+            case "!inspire":
+                sendText("Inspiring.",500);
+                waitFor("Inspiring.");
+                Inspirobot.getInspired();
+                break;
             case "!extragooddog":
                 sendText("Woof.",500);
                 waitFor("Woof.");
