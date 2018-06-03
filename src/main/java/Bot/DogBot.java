@@ -121,14 +121,22 @@ public class DogBot {
 
         //Ctrl + V
         sendCtrlV();
+
+        explore.robot.delay(250);
+        explore.robot.keyPress(KeyEvent.VK_ENTER);
+        explore.robot.keyRelease(KeyEvent.VK_ENTER);
     }
 
-    public static void sendImage(String filePath) throws Exception{
+    private static void sendImage(String filePath) throws Exception{
         //Copy image to clipboard
         ImageToClipboard.setImageToClipboard(filePath);
 
         //Ctrl + V
         sendCtrlV();
+
+        explore.robot.delay(250);
+        explore.robot.keyPress(KeyEvent.VK_ENTER);
+        explore.robot.keyRelease(KeyEvent.VK_ENTER);
 
     }
 
