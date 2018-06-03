@@ -28,6 +28,7 @@ public class DogBot {
     private static String botVersion;
     private static int updateRate, goodcount, badcount;
     private static int messageCount = 0;
+    private static int maxMessages = 30;
     private static Date startTime;
 
     public static void loadFiles() throws Exception {
@@ -326,11 +327,19 @@ public class DogBot {
             if (newMessage.compareTo(message) != 0 && !(newMessage.equals("\" class="))) {
                 message = newMessage;
 
-                System.out.println(message);
+                System.out.println("Read: \"" + message + "\"");
                 messageCount ++;
 
                 runCommandTriggers(message.toLowerCase().trim());
                 messageHistory.add(message);
+            }
+
+            //remove excess messages to stop memory leaks
+
+            int difference = messageHistory.size() - maxMessages;
+
+            for (int i = 0; i < difference; i++) {
+                messageHistory.remove(0);
             }
 
             //Scroll down to make sure the bot keeps responding
