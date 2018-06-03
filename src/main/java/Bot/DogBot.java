@@ -28,7 +28,6 @@ public class DogBot {
     private static String botVersion;
     private static int updateRate, goodcount, badcount;
     private static int messageCount = 0;
-    private static int maxMessages = 30;
     private static Date startTime;
 
     public static void loadFiles() throws Exception {
@@ -303,6 +302,7 @@ public class DogBot {
     }
 
     public static void main(String[] args) throws Exception {
+        int maxMessages = 30;
         int scrollCycles = 0;
 
         loadFiles();
