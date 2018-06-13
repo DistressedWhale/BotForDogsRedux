@@ -18,7 +18,7 @@ import java.nio.file.*;
 import java.nio.charset.*;
 
 public class DogBot {
-    public static List<String> dogSubreddits, eightBallResponses, dogResponses, listOfSadness, quotes, dogOnlineMessages, dogShutdownMessages, extraGoodDogs, catSubreddits, catResponses, catReacts;
+    public static List<String> dogSubreddits, eightBallResponses, dogResponses, listOfSadness, quotes, dogOnlineMessages, dogShutdownMessages, extraGoodDogs, catSubreddits, catResponses, catReacts, birbSubreddits, birbResponses;
     public static ArrayList<String> messageHistory = new ArrayList<>();
 
     private static boolean running = true;
@@ -35,11 +35,15 @@ public class DogBot {
 
         catResponses = Files.readAllLines(Paths.get("config/catResponses.txt"), StandardCharsets.UTF_8);
 
+        birbResponses = Files.readAllLines(Paths.get("config/birbResponses.txt"), StandardCharsets.UTF_8);
+
         eightBallResponses = Files.readAllLines(Paths.get("config/8BallResponses.txt"), StandardCharsets.UTF_8);
 
         dogSubreddits = Files.readAllLines(Paths.get("config/dogSubreddits.txt"), StandardCharsets.UTF_8);
 
         catSubreddits = Files.readAllLines(Paths.get("config/catSubreddits.txt"), StandardCharsets.UTF_8);
+
+        birbSubreddits = Files.readAllLines(Paths.get("config/birbSubreddits.txt"), StandardCharsets.UTF_8);
 
         listOfSadness = Files.readAllLines(Paths.get("config/listOfSadness.txt"), StandardCharsets.UTF_8);
 
@@ -178,51 +182,102 @@ public class DogBot {
     private static void runCommandTriggers(String message) throws Exception {
 
         switch (message) {
-            case "!dog": Dogs.sendDog(); break;
-            case "!cat": Cats.sendCat(); break;
+            case "!dog":
+                Dogs.sendDog();
+                break;
+
+            case "!cat":
+                Cats.sendCat();
+                break;
+
+            case "!birb":
+            case "!bird":
+                Birbs.sendBirb();
+                break;
 
             case "!dogreddits":
-            case "!subreddits": Dogs.sendDogSubreddits(); break;
+            case "!subreddits":
+                Dogs.sendDogSubreddits();
+                break;
 
             case "!puptime":
-            case "!uptime": sendUptime(); break;
+            case "!uptime":
+                sendUptime();
+                break;
 
-            case "!stats": sendStats(); break;
+            case "!stats":
+                sendStats();
+                break;
+
             case "!tab":
                 sendText("WEE WOO WEE WOO", 200);
                 waitFor("WEE WOO WEE WOO");
-                sendImage("resources/misc/tabulance.png");   break;
-            case "!xkcd": XKCD.getRandomXKCD(); break;
+                sendImage("resources/misc/tabulance.png");
+                break;
 
-            case "!rtd": sendText("You rolled " + String.valueOf(new Random().nextInt(6) + 1)); break;
+            case "!xkcd":
+                XKCD.getRandomXKCD();
+                break;
+
+            case "!rtd":
+                sendText("You rolled " + String.valueOf(new Random().nextInt(6) + 1));
+                break;
 
             case "!8ball":
-            case "!ask": sendText("Please enter a question after the command"); break;
+            case "!ask":
+                sendText("Please enter a question after the command");
+                break;
 
-            case "!ping": sendText("Pong!"); break;
+            case "!ping":
+                sendText("Pong!");
+                break;
 
             case "!xkcd l":
-            case "!xkcd latest": XKCD.getLatestXKCD(); break;
+            case "!xkcd latest":
+                XKCD.getLatestXKCD();
+                break;
 
-            case "!grab": Quotes.doGrab(); break;
-            case "!quote": Quotes.doQuote(); break;
-            case "!dates": sendListOfSadness(); break;
+            case "!grab":
+                Quotes.doGrab();
+                break;
+
+            case "!quote":
+                Quotes.doQuote();
+                break;
+
+            case "!dates":
+                sendListOfSadness();
+                break;
+
             case "!inspire":
                 sendText("Inspiring.",500);
                 waitFor("Inspiring.");
                 Inspirobot.getInspired();
                 break;
+
             case "!extragooddog":
                 sendText("Woof.",500);
                 waitFor("Woof.");
                 sendImageFromURL(pickRandom(extraGoodDogs));
                 break;
-            case "!reload": loadFiles(); break;
 
-            case "!github": sendText("Github repository: https://github.com/DistressedWhale/BotForDogsRedux"); break;
-            case "!howgood": getGood(); break;
+            case "!reload":
+                loadFiles();
+                break;
+
+            case "!github":
+                sendText("Github repository: https://github.com/DistressedWhale/BotForDogsRedux");
+                break;
+
+            case "!howgood":
+                getGood();
+                break;
+
             case "!help":
-            case "!commands": sendText("A list of commands can be found at https://github.com/DistressedWhale/BotForDogsRedux/blob/master/README.md"); break;
+            case "!commands":
+                sendText("A list of commands can be found at https://github.com/DistressedWhale/BotForDogsRedux/blob/master/README.md");
+                break;
+
             default:
                 if (message.contains("good bot") || message.contains("good boy") || message.contains("good dog")) {
                     sendText("Thanks :D");
