@@ -18,8 +18,20 @@ import java.nio.file.*;
 import java.nio.charset.*;
 
 public class DogBot {
-    public static List<String> dogSubreddits, eightBallResponses, dogResponses, listOfSadness, quotes, dogOnlineMessages, dogShutdownMessages, extraGoodDogs, catSubreddits, catResponses, catReacts, birbSubreddits, birbResponses;
-    public static ArrayList<String> messageHistory = new ArrayList<>();
+    public static List<String> dogSubreddits;
+    private static List<String> eightBallResponses;
+    public static List<String> dogResponses;
+    private static List<String> listOfSadness;
+    public static List<String> quotes;
+    private static List<String> dogOnlineMessages;
+    private static List<String> dogShutdownMessages;
+    private static List<String> extraGoodDogs;
+    public static List<String> catSubreddits;
+    public static List<String> catResponses;
+    private static List<String> catReacts;
+    public static List<String> birbSubreddits;
+    public static List<String> birbResponses;
+    public static final ArrayList<String> messageHistory = new ArrayList<>();
 
     private static boolean running = true;
     private static String shutdownCode;
@@ -312,6 +324,8 @@ public class DogBot {
                 } else if (matches("!grab \\d+", message)) {
                     Quotes.doGrab(Integer.valueOf(message.substring(6)));
 
+                } else if (matches("!locate .+",message)) {
+                    Quotes.doGrabSearch(message.substring(8));
                 }
 
                 //Make sure this is the last check.
@@ -367,6 +381,7 @@ public class DogBot {
     public static void main(String[] args) throws Exception {
         int maxMessages = 30;
         int scrollCycles = 0;
+        boolean silentMode = false;
 
         loadFiles();
         shutdownCode = (Integer.toString(new Random().nextInt(99999)));
@@ -376,12 +391,14 @@ public class DogBot {
         for (String arg : args) {
             if (arg.equals("-t") || arg.equals("-testing")) {
                 testingMode = true;
+            } else if (arg.equals("-s") || arg.equals("-silent")) {
+                silentMode = true;
             }
         }
 
         logInWithIni(new File("config/config.ini"), testingMode);
 
-        sendText("Dog Bot Redux version " + botVersion +  " online\n" + pickRandom(dogOnlineMessages));
+        if (!silentMode) sendText("Dog Bot Redux version " + botVersion +  " online\n" + pickRandom(dogOnlineMessages));
         startTime = new Date();
 
         while (running) {

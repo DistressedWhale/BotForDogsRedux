@@ -5,7 +5,7 @@ import java.util.regex.*;
 
 public class ProcessSource {
 
-    public static ArrayList<String> getMessages (String source) {
+    private static ArrayList<String> getMessages(String source) {
 
         ArrayList<String> allMatches = new ArrayList<String>();
         Matcher m = Pattern.compile("body=\".+?\"")
@@ -13,6 +13,8 @@ public class ProcessSource {
         while (m.find()) {
             allMatches.add(m.group());
         }
+
+
 
         return allMatches;
     }
@@ -32,7 +34,12 @@ public class ProcessSource {
         ArrayList<String> messages = getMessages(source);
         ArrayList<String> outputMessages = new ArrayList<String>();
         for (String s : messages) {
-            outputMessages.add(replaceEscaped(stripBodyTag(s)));
+            if (s.matches("! (.+)")) {
+                //If there is an accidental space between ! and the command, remove the space.
+                outputMessages.add("!" + replaceEscaped(stripBodyTag(s)).substring(2));
+            } else {
+                outputMessages.add(replaceEscaped(stripBodyTag(s)));
+            }
         }
 
         return outputMessages;

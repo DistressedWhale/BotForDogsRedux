@@ -7,7 +7,7 @@ import java.util.regex.Pattern;
 import Bot.DogBot;
 import com.mashape.unirest.http.Unirest;
 
-public class Reddit {
+class Reddit {
 
     public static String getSubredditPicture(List<String> subreddits) throws Exception {
         boolean foundValidPicture = false;
