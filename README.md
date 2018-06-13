@@ -23,6 +23,7 @@ This updated version of BotForDogs solves that, by using a combination of a web 
 | !dog          | Sends a picture of a dog from reddit |
 | !extragooddog | Sends an image from a curated list of dogs |
 | !cat | Sends a picture of a cat from reddit |
+| !birb | Sends a picture of a bird from reddit |
 | !react | Gives the cat's reaction |
 | !xkcd l or !xkcd latest | Sends the most recent xkcd |
 | !xkcd | Sends a random XKCD |
