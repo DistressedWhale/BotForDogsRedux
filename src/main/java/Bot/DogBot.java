@@ -31,6 +31,8 @@ public class DogBot {
     private static List<String> catReacts;
     public static List<String> birbSubreddits;
     public static List<String> birbResponses;
+    public static List<String> carSubreddits;
+    public static List<String> carResponses;
     public static final ArrayList<String> messageHistory = new ArrayList<>();
 
     private static boolean running = true;
@@ -49,6 +51,8 @@ public class DogBot {
 
         birbResponses = Files.readAllLines(Paths.get("config/birbResponses.txt"), StandardCharsets.UTF_8);
 
+        carResponses = Files.readAllLines(Paths.get("config/carResponses.txt"), StandardCharsets.UTF_8);
+
         eightBallResponses = Files.readAllLines(Paths.get("config/8BallResponses.txt"), StandardCharsets.UTF_8);
 
         dogSubreddits = Files.readAllLines(Paths.get("config/dogSubreddits.txt"), StandardCharsets.UTF_8);
@@ -56,6 +60,8 @@ public class DogBot {
         catSubreddits = Files.readAllLines(Paths.get("config/catSubreddits.txt"), StandardCharsets.UTF_8);
 
         birbSubreddits = Files.readAllLines(Paths.get("config/birbSubreddits.txt"), StandardCharsets.UTF_8);
+
+        carSubreddits = Files.readAllLines(Paths.get("config/carSubreddits.txt"), StandardCharsets.UTF_8);
 
         listOfSadness = Files.readAllLines(Paths.get("config/listOfSadness.txt"), StandardCharsets.UTF_8);
 
@@ -205,6 +211,10 @@ public class DogBot {
             case "!birb":
             case "!bird":
                 Birbs.sendBirb();
+                break;
+
+            case "!car":
+                Cars.sendCar();
                 break;
 
             case "!dogreddits":
