@@ -24,6 +24,7 @@ This updated version of BotForDogs solves that, by using a combination of a web 
 | !extragooddog | Sends an image from a curated list of dogs |
 | !cat | Sends a picture of a cat from reddit |
 | !birb | Sends a picture of a bird from reddit |
+| !sloth | Sends a picture of a sloth from reddit |
 | !react | Gives the cat's reaction |
 | !xkcd l or !xkcd latest | Sends the most recent xkcd |
 | !xkcd | Sends a random XKCD |
@@ -40,6 +41,7 @@ This updated version of BotForDogs solves that, by using a combination of a web 
 | !rtd | Returns a random number in the range 1-6 |
 | !rtd [x] | Returns a random number inthe range 1-x (Limited by integer max) |
 | !8ball or !ask | Query the all knowing magic 8 ball |
+| !music or !lyrics | Retruns lyrcis from a randomly selected song |
 | !dates | Outputs a list of upcoming dates from listOfSadness.txt |
 | !dogreddits | Shows the subreddits used in !dog |
 

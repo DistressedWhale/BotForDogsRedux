@@ -30,6 +30,8 @@ public class DogBot {
     public static List<String> catResponses;
     private static List<String> catReacts;
     public static List<String> birbSubreddits;
+    public static List<String> slothSubreddits;
+    public static List<String> lyrics;
     public static List<String> birbResponses;
     public static final ArrayList<String> messageHistory = new ArrayList<>();
 
@@ -56,6 +58,10 @@ public class DogBot {
         catSubreddits = Files.readAllLines(Paths.get("config/catSubreddits.txt"), StandardCharsets.UTF_8);
 
         birbSubreddits = Files.readAllLines(Paths.get("config/birbSubreddits.txt"), StandardCharsets.UTF_8);
+
+        slothSubreddits = Files.readAllLines(Paths.get("config/slothSubreddits.txt"), StandardCharsets.UTF_8);
+
+        lyrics = Files.readAllLines(Paths.get("config/lyrics.txt"), StandardCharsets.UTF_8);
 
         listOfSadness = Files.readAllLines(Paths.get("config/listOfSadness.txt"), StandardCharsets.UTF_8);
 
@@ -205,6 +211,15 @@ public class DogBot {
             case "!birb":
             case "!bird":
                 Birbs.sendBirb();
+                break;
+
+            case "!sloth":
+                Sloths.sendSloth();
+                break;
+
+            case "!lyrics":
+            case "!music":
+                Lyrics.sendLyrics();
                 break;
 
             case "!dogreddits":
