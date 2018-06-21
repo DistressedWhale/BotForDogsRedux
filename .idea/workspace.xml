@@ -11,14 +11,12 @@
   <component name="ChangeListManager">
     <list default="true" id="001277d4-79c5-45f5-894d-7d5294c93d14" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/8BallResponses.txt" beforeDir="false" afterPath="$PROJECT_DIR$/config/8BallResponses.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config/config.ini" beforeDir="false" afterPath="$PROJECT_DIR$/config/config.ini" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/quotes.txt" beforeDir="false" afterPath="$PROJECT_DIR$/config/quotes.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Bot/DogBot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Bot/DogBot.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Bot/Modules/Birbs.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Bot/Modules/Birbs.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Bot/Modules/Cats.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Bot/Modules/Cats.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Bot/Modules/Dogs.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Bot/Modules/Dogs.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Bot/Modules/Quotes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Bot/Modules/Quotes.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Bot/Modules/Reddit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Bot/Modules/Reddit.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Bot/Utilities/ImageTransfer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Bot/Utilities/ImageTransfer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Bot/Utilities/ProcessSource.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Bot/Utilities/ProcessSource.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
@@ -63,44 +61,8 @@
       <file leaf-file-name="config.ini" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/config/config.ini">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="160">
-              <caret line="8" column="14" selection-start-line="8" selection-start-column="14" selection-end-line="8" selection-end-column="14" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Inspirobot.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/Bot/Modules/Inspirobot.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="100">
-              <caret line="5" column="55" selection-start-line="5" selection-start-column="55" selection-end-line="5" selection-end-column="55" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ImageToClipboard.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/Bot/Utilities/ImageToClipboard.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="420">
-              <caret line="27" column="34" lean-forward="true" selection-start-line="27" selection-start-column="34" selection-end-line="27" selection-end-column="34" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="WebExplorer.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/Bot/Utilities/WebExplorer.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="211">
-              <caret line="101" column="36" selection-start-line="101" selection-start-column="36" selection-end-line="101" selection-end-column="36" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ImageTransfer.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/Bot/Utilities/ImageTransfer.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="80">
-              <caret line="8" column="6" selection-start-line="8" selection-start-column="6" selection-end-line="8" selection-end-column="6" />
+            <state relative-caret-position="200">
+              <caret line="10" column="13" lean-forward="true" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
             </state>
           </provider>
         </entry>
@@ -108,16 +70,26 @@
       <file leaf-file-name="DogBot.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/Bot/DogBot.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="177">
-              <caret line="392" column="35" lean-forward="true" selection-start-line="392" selection-start-column="35" selection-end-line="392" selection-end-column="35" />
-              <folding>
-                <element signature="e#5098#5099#0" expanded="true" />
-                <element signature="e#5142#5143#0" expanded="true" />
-                <element signature="e#5201#5202#0" expanded="true" />
-                <element signature="e#5249#5250#0" expanded="true" />
-                <element signature="e#5301#5302#0" expanded="true" />
-                <element signature="e#5367#5368#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="181">
+              <caret line="377" column="50" lean-forward="true" selection-start-line="377" selection-start-column="50" selection-end-line="377" selection-end-column="50" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Dogs.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/Bot/Modules/Dogs.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="220">
+              <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="16" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Birbs.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/Bot/Modules/Birbs.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="320">
+              <caret line="20" column="59" selection-start-line="20" selection-start-column="59" selection-end-line="20" selection-end-column="59" />
             </state>
           </provider>
         </entry>
@@ -125,26 +97,8 @@
       <file leaf-file-name="Quotes.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/Bot/Modules/Quotes.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="203">
-              <caret line="54" column="57" selection-start-line="54" selection-start-column="57" selection-end-line="54" selection-end-column="57" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="dogShutdownMessages.txt" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/config/dogShutdownMessages.txt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="140">
-              <caret line="7" selection-start-line="7" selection-end-line="7" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="catResponses.txt" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/config/catResponses.txt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="80">
-              <caret line="4" column="36" selection-start-line="4" selection-start-column="36" selection-end-line="4" selection-end-column="36" />
+            <state relative-caret-position="400">
+              <caret line="27" column="9" lean-forward="true" selection-start-line="27" selection-start-column="9" selection-end-line="27" selection-end-column="9" />
             </state>
           </provider>
         </entry>
@@ -163,6 +117,17 @@
       <find>image</find>
       <find>rtd</find>
       <find>test</find>
+      <find>dogResponses</find>
+      <find>eight</find>
+      <find>listofsad</find>
+      <find>quotes</find>
+      <find>dogOnlineMess</find>
+      <find>catReac</find>
+      <find>dogSub</find>
+      <find>dogSubredd</find>
+      <find>loadFil</find>
+      <find>loadFiles</find>
+      <find>scrollC</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -530,12 +495,15 @@
         <option value="$PROJECT_DIR$/config/dogOnlineMessages.txt" />
         <option value="$PROJECT_DIR$/config/catResponses.txt" />
         <option value="$PROJECT_DIR$/src/main/java/DogBot/DogBot.java" />
-        <option value="$PROJECT_DIR$/config/config.ini" />
         <option value="$PROJECT_DIR$/config/8BallResponses.txt" />
         <option value="$PROJECT_DIR$/src/main/java/Bot/Utilities/ProcessSource.java" />
-        <option value="$PROJECT_DIR$/src/main/java/Bot/Modules/Quotes.java" />
         <option value="$PROJECT_DIR$/src/main/java/Bot/Utilities/ImageTransfer.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Bot/Modules/Cats.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Bot/Modules/Birbs.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Bot/Modules/Quotes.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Bot/Modules/Dogs.java" />
         <option value="$PROJECT_DIR$/src/main/java/Bot/DogBot.java" />
+        <option value="$PROJECT_DIR$/config/config.ini" />
       </list>
     </option>
   </component>
@@ -549,8 +517,8 @@
     <packageJsonPaths />
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="639" />
-    <option name="y" value="-9" />
+    <option name="x" value="829" />
+    <option name="y" value="-23" />
     <option name="width" value="974" />
     <option name="height" value="1087" />
   </component>
@@ -560,6 +528,7 @@
     </navigator>
     <panes>
       <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -576,20 +545,20 @@
               <item name="BotForDogs" type="b2602c69:ProjectViewProjectNode" />
               <item name="BotForDogsRedux" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
             </path>
             <path>
               <item name="BotForDogs" type="b2602c69:ProjectViewProjectNode" />
               <item name="BotForDogsRedux" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="BotForDogs" type="b2602c69:ProjectViewProjectNode" />
               <item name="BotForDogsRedux" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="Bot" type="462c0819:PsiDirectoryNode" />
             </path>
@@ -597,25 +566,15 @@
               <item name="BotForDogs" type="b2602c69:ProjectViewProjectNode" />
               <item name="BotForDogsRedux" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="Bot" type="462c0819:PsiDirectoryNode" />
               <item name="Modules" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="BotForDogs" type="b2602c69:ProjectViewProjectNode" />
-              <item name="BotForDogsRedux" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="Bot" type="462c0819:PsiDirectoryNode" />
-              <item name="Utilities" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
       <pane id="AndroidView" />
     </panes>
   </component>
@@ -724,7 +683,14 @@
       <option name="project" value="LOCAL" />
       <updated>1528035156151</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Next version, ready to deply">
+      <created>1528917156975</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1528917156975</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -732,6 +698,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1096" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -744,8 +711,7 @@
       <window_info anchor="bottom" id="Terminal" order="7" />
       <window_info id="Designer" order="2" />
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24947916" />
-      <window_info anchor="bottom" id="Build" order="7" weight="0.3282365" />
-      <window_info anchor="bottom" id="Inspection Results" weight="0.32925585" />
+      <window_info anchor="bottom" id="Build" order="7" weight="0.23649338" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32925585" />
       <window_info anchor="right" id="Gradle" order="3" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -757,26 +723,27 @@
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info id="Image Layers" order="3" />
-      <window_info anchor="right" id="Theme Preview" order="5" />
+      <window_info anchor="bottom" id="Inspection Results" order="8" weight="0.32925585" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info id="Capture Tool" order="3" />
       <window_info anchor="right" id="Database" order="5" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
+      <window_info anchor="right" id="Theme Preview" order="5" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
     </layout>
     <layout-to-restore>
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="Gradle" order="6" weight="0.017708333" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.2889115" />
+      <window_info anchor="bottom" id="Version Control" order="9" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.115625" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Version Control" order="9" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.2889115" />
       <window_info id="Designer" order="2" />
       <window_info id="UI Designer" order="3" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
@@ -801,16 +768,10 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="v2.8 - Message cache limit and !inspire" />
     <MESSAGE value="Added enter press after sending image, ready to deploy" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added enter press after sending image, ready to deploy" />
+    <MESSAGE value="Next version, ready to deply" />
+    <option name="LAST_COMMIT_MESSAGE" value="Next version, ready to deply" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/DogBot/WebExplorer.java" />
-    <entry file="file://$PROJECT_DIR$/gradlew">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1275" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/RunFacebookBot.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/output.html" />
     <entry file="file://$PROJECT_DIR$/src/test/java/tyest.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/Commands.java" />
@@ -993,13 +954,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/config/config.ini">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="160">
-          <caret line="8" column="14" selection-start-line="8" selection-start-column="14" selection-end-line="8" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Bot/Utilities/ProcessSource.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="251">
@@ -1021,13 +975,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Bot/Modules/Quotes.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="203">
-          <caret line="54" column="57" selection-start-line="54" selection-start-column="57" selection-end-line="54" selection-end-column="57" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Bot/Modules/Inspirobot.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="100">
@@ -1038,13 +985,13 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/Bot/Utilities/ImageToClipboard.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="420">
-          <caret line="27" column="34" lean-forward="true" selection-start-line="27" selection-start-column="34" selection-end-line="27" selection-end-column="34" />
+          <caret line="27" column="34" selection-start-line="27" selection-start-column="34" selection-end-line="27" selection-end-column="34" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Bot/Utilities/WebExplorer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="211">
+        <state relative-caret-position="1620">
           <caret line="101" column="36" selection-start-line="101" selection-start-column="36" selection-end-line="101" selection-end-column="36" />
         </state>
       </provider>
@@ -1056,18 +1003,45 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Bot/Modules/Cats.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="320">
+          <caret line="20" column="33" selection-start-line="20" selection-start-column="33" selection-end-line="20" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Bot/Modules/Birbs.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="320">
+          <caret line="20" column="59" selection-start-line="20" selection-start-column="59" selection-end-line="20" selection-end-column="59" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Bot/Modules/Quotes.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="400">
+          <caret line="27" column="9" lean-forward="true" selection-start-line="27" selection-start-column="9" selection-end-line="27" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Bot/Modules/Dogs.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/config.ini">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="200">
+          <caret line="10" column="13" lean-forward="true" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Bot/DogBot.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="177">
-          <caret line="392" column="35" lean-forward="true" selection-start-line="392" selection-start-column="35" selection-end-line="392" selection-end-column="35" />
-          <folding>
-            <element signature="e#5098#5099#0" expanded="true" />
-            <element signature="e#5142#5143#0" expanded="true" />
-            <element signature="e#5201#5202#0" expanded="true" />
-            <element signature="e#5249#5250#0" expanded="true" />
-            <element signature="e#5301#5302#0" expanded="true" />
-            <element signature="e#5367#5368#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="181">
+          <caret line="377" column="50" lean-forward="true" selection-start-line="377" selection-start-column="50" selection-end-line="377" selection-end-column="50" />
         </state>
       </provider>
     </entry>

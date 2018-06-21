@@ -18,19 +18,6 @@ import java.nio.file.*;
 import java.nio.charset.*;
 
 public class DogBot {
-    public static List<String> dogSubreddits;
-    private static List<String> eightBallResponses;
-    public static List<String> dogResponses;
-    private static List<String> listOfSadness;
-    public static List<String> quotes;
-    private static List<String> dogOnlineMessages;
-    private static List<String> dogShutdownMessages;
-    private static List<String> extraGoodDogs;
-    public static List<String> catSubreddits;
-    public static List<String> catResponses;
-    private static List<String> catReacts;
-    public static List<String> birbSubreddits;
-    public static List<String> birbResponses;
     public static final ArrayList<String> messageHistory = new ArrayList<>();
 
     private static boolean running = true;
@@ -43,31 +30,6 @@ public class DogBot {
     private static Date startTime;
 
     public static void loadFiles() throws Exception {
-        dogResponses = Files.readAllLines(Paths.get("config/dogResponses.txt"), StandardCharsets.UTF_8);
-
-        catResponses = Files.readAllLines(Paths.get("config/catResponses.txt"), StandardCharsets.UTF_8);
-
-        birbResponses = Files.readAllLines(Paths.get("config/birbResponses.txt"), StandardCharsets.UTF_8);
-
-        eightBallResponses = Files.readAllLines(Paths.get("config/8BallResponses.txt"), StandardCharsets.UTF_8);
-
-        dogSubreddits = Files.readAllLines(Paths.get("config/dogSubreddits.txt"), StandardCharsets.UTF_8);
-
-        catSubreddits = Files.readAllLines(Paths.get("config/catSubreddits.txt"), StandardCharsets.UTF_8);
-
-        birbSubreddits = Files.readAllLines(Paths.get("config/birbSubreddits.txt"), StandardCharsets.UTF_8);
-
-        listOfSadness = Files.readAllLines(Paths.get("config/listOfSadness.txt"), StandardCharsets.UTF_8);
-
-        quotes = Files.readAllLines(Paths.get("config/quotes.txt"), StandardCharsets.UTF_8);
-
-        dogOnlineMessages = Files.readAllLines(Paths.get("config/dogOnlineMessages.txt"), StandardCharsets.UTF_8);
-
-        dogShutdownMessages = Files.readAllLines(Paths.get("config/dogShutdownMessages.txt"), StandardCharsets.UTF_8);
-
-        extraGoodDogs = Files.readAllLines(Paths.get("config/extraGoodDogs.txt"), StandardCharsets.UTF_8);
-
-        catReacts = Files.readAllLines(Paths.get("config/catReacts.txt"), StandardCharsets.UTF_8);
 
         Wini ini = new Wini(new File("config/config.ini"));
         goodcount = ini.get("ratings", "goodratings", int.class);
@@ -103,10 +65,10 @@ public class DogBot {
         return a.get(a.size() - 1);
     }
 
-    private static void sendListOfSadness() {
+    private static void sendListOfSadness() throws IOException {
         String dates = "Upcoming dates:\n";
 
-        for (String thing : listOfSadness) {
+        for (String thing : Files.readAllLines(Paths.get("config/listOfSadness.txt"), StandardCharsets.UTF_8)) {
             dates = dates.concat(thing + "\n");
         }
 
@@ -270,11 +232,7 @@ public class DogBot {
             case "!extragooddog":
                 sendText("Woof.",500);
                 waitFor("Woof.");
-                sendImageFromURL(pickRandom(extraGoodDogs));
-                break;
-
-            case "!reload":
-                loadFiles();
+                sendImageFromURL(pickRandom(Files.readAllLines(Paths.get("config/extraGoodDogs.txt"), StandardCharsets.UTF_8)));
                 break;
 
             case "!github":
@@ -302,13 +260,13 @@ public class DogBot {
                     updateRatings();
 
                 } else if (matches("(!8ball|!ask) .+", message)) {
-                    sendText(pickRandom(eightBallResponses));
+                    sendText(pickRandom(Files.readAllLines(Paths.get("config/8BallResponses.txt"), StandardCharsets.UTF_8)));
 
                 } else if (matches("(!react|!catreact|!reaction|!reacc|catreacc) .+", message)) {
                     sendText("Judging.");
                     waitFor("Judging.");
 
-                    sendImageFromURL(pickRandom(catReacts));
+                    sendImageFromURL(pickRandom(Files.readAllLines(Paths.get("config/catReacts.txt"), StandardCharsets.UTF_8)));
 
                 } else if (matches("!xkcd [1-9][0-9]{0,3}", message)) {
                     int xkcdNumber = Integer.valueOf(message.substring(6));
@@ -316,7 +274,7 @@ public class DogBot {
 
                 } else if (message.equals("!shutdown " + shutdownCode)) {
                     running = false;
-                    sendText("Shutting down\n" + pickRandom(dogShutdownMessages));
+                    sendText("Shutting down\n" + pickRandom(Files.readAllLines(Paths.get("config/dogShutdownMessages.txt"), StandardCharsets.UTF_8)));
 
                 } else if (matches("!rtd [1-9][0-9]{0,10}", message)) {
                     doRTD(message);
@@ -380,7 +338,7 @@ public class DogBot {
 
     public static void main(String[] args) throws Exception {
         int maxMessages = 30;
-        int scrollCycles = 0;
+        int pageDownCycles = 0;
         boolean silentMode = false;
 
         loadFiles();
@@ -397,9 +355,10 @@ public class DogBot {
         }
 
         logInWithIni(new File("config/config.ini"), testingMode);
-
-        if (!silentMode) sendText("Dog Bot Redux version " + botVersion +  " online\n" + pickRandom(dogOnlineMessages));
         startTime = new Date();
+
+        if (!silentMode) sendText("Dog Bot Redux version " + botVersion +  " online\n" +
+                                    pickRandom(Files.readAllLines(Paths.get("config/dogOnlineMessages.txt"), StandardCharsets.UTF_8)));
 
         while (running) {
             String newMessage = getLatestMessage();
@@ -423,12 +382,12 @@ public class DogBot {
             }
 
             //Scroll down to make sure the bot keeps responding
-            if (scrollCycles >= 50) {
+            if (pageDownCycles >= 50) {
                 explore.robot.keyPress(KeyEvent.VK_PAGE_DOWN);
-                scrollCycles = 0;
+                pageDownCycles = 0;
             }
 
-            scrollCycles++;
+            pageDownCycles++;
             Thread.sleep(updateRate);
 
 

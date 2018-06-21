@@ -1,6 +1,7 @@
 package Bot.Modules;
 
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
@@ -9,8 +10,8 @@ import java.util.ArrayList;
 import Bot.DogBot;
 
 public class Quotes {
-    public static void doQuote() {
-        DogBot.sendText(("Quote: \"" + DogBot.pickRandom(DogBot.quotes) + "\"").replaceAll("&#10;","\n"));
+    public static void doQuote() throws IOException {
+        DogBot.sendText(("Quote: \"" + DogBot.pickRandom(Files.readAllLines(Paths.get("config/quotes.txt"), StandardCharsets.UTF_8)) + "\"").replaceAll("&#10;","\n"));
     }
 
     public static void doGrab() throws Exception {
