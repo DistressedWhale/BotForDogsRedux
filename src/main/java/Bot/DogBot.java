@@ -262,7 +262,7 @@ public class DogBot {
                 } else if (matches("(!8ball|!ask) .+", message)) {
                     sendText(pickRandom(Files.readAllLines(Paths.get("config/8BallResponses.txt"), StandardCharsets.UTF_8)));
 
-                } else if (matches("(!react|!catreact|!reaction|!reacc|catreacc) .+", message)) {
+                } else if (matches("(!react|!reaction|!reacc) .+", message)) {
                     sendText("Judging.");
                     waitFor("Judging.");
 
