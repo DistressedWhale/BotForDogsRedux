@@ -43,14 +43,6 @@ This updated version of BotForDogs solves that, by using a combination of a web 
 | !dates | Outputs a list of upcoming dates from listOfSadness.txt |
 | !dogreddits | Shows the subreddits used in !dog |
 
-### Misc commands
-
-| Command       | Response              |
-| ------------- | --------------------- |
-| !tab | Wee woo |
-| !howgood | Just how good is dogbot? Based off "good dog" and "bad dog" ratings |
-
-
 
 
 
